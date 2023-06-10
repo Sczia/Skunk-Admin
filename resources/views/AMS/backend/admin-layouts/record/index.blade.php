@@ -1,7 +1,7 @@
 @extends('AMS.backend.admin-layouts.sidebar')
 
 @section('page-title')
-   Client Records
+    Client Records
 @endsection
 
 @section('contents')
@@ -59,10 +59,14 @@
                                                     data-bs-toggle="modal" data-bs-target="#delete{{ $record->id }}">
                                                     <i class="ri-delete-bin-6-line text-danger" aria-hidden="true"></i>
                                                 </button>
-
+                                                <button class="btn btn-link text-danger mb-0" type="button"
+                                                data-bs-toggle="modal" data-bs-target="#show{{ $record->id }}">
+                                                <i class="i-eye-line-6-line text-warning" aria-hidden="true"></i>
+                                                </button>
 
                                                 @include('AMS.backend.admin-layouts.record.modal._edit')
                                                 @include('AMS.backend.admin-layouts.record.modal._delete')
+                                                @include('AMS.backend.admin-layouts.record.modal._show')
 
                                             </div>
                                         </td>

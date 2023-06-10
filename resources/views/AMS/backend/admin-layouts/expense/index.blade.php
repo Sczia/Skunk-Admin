@@ -29,7 +29,7 @@ Expense
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($expences as $expence)
+                                @foreach ($expence as $expence)
                                     <tr>
 
                                         <td>
