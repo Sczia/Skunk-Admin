@@ -1,0 +1,135 @@
+:root{
+    --primary-color: #dca332;
+    --secondary-color:  #000000;
+    --active-color:
+}
+#time {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#date {
+    font-size: 1.6em;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.bg-maroon{
+    background-color: var(--primary-color) !important;
+    color: #fff;
+}
+
+/* Maroon Button */
+.btn-maroon {
+    background-color: var(--primary-color) !important;
+    color: #fff;
+    border-color: var(--primary-color);
+    border-style: solid;
+}
+
+/* Maroon Button hover effect */
+.btn-maroon:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color);
+    color: #fff;
+}
+
+/* Maroon Button focus effect */
+.btn-maroon:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(222, 178, 20, 0.3);
+}
+
+/* Maroon Button active effect */
+.btn-maroon:active {
+    background-color: var(--active-color) !important;
+    border-color: var(--active-color);
+}
+
+/* Maroon Text */
+.text-maroon {
+    color: var(--primary-color) !important;
+}
+
+/* Maroon Text hover effect */
+.text-maroon:hover {
+    color: var(--secondary-color) !important;
+}
+
+/* Maroon  btn-Outline */
+.btn-outline-maroon {
+    background: transparent !important;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Maroon  btn-Outline hover effect */
+.btn-outline-maroon:hover {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+    border-color: var(--primary-color);
+}
+
+/* Maroon  btn-Outline focus effect */
+.btn-outline-maroon:focus {
+    outline-color: var(--primary-color);
+}
+
+/* Maroon  btn-Outline active effect */
+.btn-outline-maroon:active {
+    background-color: var(--primary-color) !important;
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.pup-bg {
+    background-image: url("../images/bg2.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-glass {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.nav-item .nav-content.collapse{
+    position: relative;
+    background:#dca332;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.sidebar-nav .nav-link:focus{
+    color: #f6f9ff !important;
+    background: #dca332 !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-bottom: #dca332  1px solid;
+
+}
+.sidebar-nav .nav-link:focus.collapsed i,.sidebar-nav .nav-link:focus i {
+    color: #f6f9ff;
+}
+.sidebar-nav .nav-link:focus > .nav-content.collapse li a{
+    color: #f6f9ff ;
+}
+.sidebar-nav .nav-link > .nav-content.collapse li a {
+    color: #fff ;
+}
+.nav-content.collapse li a {
+    color: white;
+}
+.nav-content.collapse li:hover a, .nav-content.collapse li.collapse-active a{
+    color: #dca332 !important;
+}
+.nav-content.collapse li:hover,.nav-content.collapse li.collapse-active{
+    background-color: #fff !important;
+}
+.nav-content.collapse li{
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
