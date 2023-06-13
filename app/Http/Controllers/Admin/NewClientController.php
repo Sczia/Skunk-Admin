@@ -14,7 +14,7 @@ class NewClientController extends Controller
      */
     public function index()
     {
-        $clients = Clients::all();
+        $clients = Clients::where('type' ,'=','new client')->get();
         return view('AMS.backend.admin-layouts.client.index', compact('clients'));
     }
 
@@ -68,12 +68,7 @@ class NewClientController extends Controller
     {
         try {
             Clients::where('id', $id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'company' => $request->company,
-                'address' => $request->address,
-                'number' => $request->number,
-
+                'type' => 'old cliet',
             ]);
             return redirect()->back()->with('successToast', 'Information Updated Successfully!');
         } catch (\Throwable $th) {

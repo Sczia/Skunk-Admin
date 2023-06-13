@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
-            $table->string('type_id'); /* if its carwahs, maintinance, car tired etc. */
-            $table->string('car_id'); /* kung NONG CAR NA DINALA NI CLIENT */
-            $table->string('client_id'); /* kung sino ang cllient */
+            $table->unsignedBigInteger('type_id'); /* if its carwahs, maintinance, car tired etc. */
+            $table->unsignedBigInteger('car_id'); /* kung NONG CAR NA DINALA NI CLIENT */
+            $table->unsignedBigInteger('client_id'); /* kung sino ang cllient */
+            $table->unsignedBigInteger('service_id'); /* kung sino ang cllient */
+            $table->foreign('type_id')->references('id')->on('record_types');
+            $table->foreign('car_id')->references('id')->on('cars');
+            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('service_id')->references('id')->on('services');
             $table->timestamps();
         });
     }

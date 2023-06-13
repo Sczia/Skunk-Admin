@@ -24,7 +24,7 @@ Service
                                 <tr>
                                     <th scope="col">Service</th>
                                     <th scope="col">Price</th>
-
+                                    <th scope="col">Sizes</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -38,8 +38,17 @@ Service
                                         <td>
 
                                             <div class="d-flex flex-column justify-content-center px-2 py-1">
-                                                <h6 class="mb-0 text-sm">₱{{ number_format($service->amount, 2, '.', ',') }}
+                                                <h6 class="mb-0 text-sm">₱{{ number_format($service->price, 2, '.', ',') }}
                                                 </h6>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column">
+                                                @foreach ($service->sizes as $size)
+                                                    <span>Size:{{ $size->size}}</span>
+                                                    <span>Price:{{ $size->price}}</span>
+                                                @endforeach
+
                                             </div>
                                         </td>
                                         <td>
@@ -64,7 +73,6 @@ Service
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-
                     </div>
                 </div>
 

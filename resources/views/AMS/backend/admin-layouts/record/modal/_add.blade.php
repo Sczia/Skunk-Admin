@@ -2,10 +2,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-maroon">
-                <h5 class="modal-title text-white">Add Redord</h5>
+                <h5 class="modal-title text-white">Add Record</h5>
 
             </div>
-            <form action="{{ route('admin.record.store') }}" method="POST">
+            <form action="{{ route('admin.client.record.store') }}" method="POST">
             {{--     <div class="modal-body">
                     @csrf
                     @method('POST')

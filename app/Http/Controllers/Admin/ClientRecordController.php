@@ -13,7 +13,7 @@ class ClientRecordController extends Controller
      */
     public function index()
     {
-        $records = Record::all();
+        $records = Record::where('type' , '=', 'old client')->get();
         return view('AMS.backend.admin-layouts.record.index', compact('records'));
     }
 

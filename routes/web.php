@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ClientRecordController;
 use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\NewClientController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,17 +26,27 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/login', 'login')->name('login.store');
     Route::post('/logout',  'logout')->name('logout.delete')->middleware('auth');
 });
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth','alert'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
-
-    /* CLIENT-RECORD*/
-    Route::prefix('record')->name('record.')->controller(ClientRecordController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/{id}', 'show')->name('show');
-        Route::post('/store', 'store')->name('store');
-        Route::put('/{id}/edit', 'edit')->name('edit');
-        Route::put('/{id}/update', 'update')->name('update');
-        Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+    Route::prefix('client')->name('client.')->group(function () {
+        /* CLIENT-RECORD*/
+        Route::prefix('record')->name('record.')->controller(ClientRecordController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/{id}', 'show')->name('show');
+            Route::post('/store', 'store')->name('store');
+            Route::put('/{id}/edit', 'edit')->name('edit');
+            Route::put('/{id}/update', 'update')->name('update');
+            Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+        });
+        /* NEW CLIENTS*/
+        Route::prefix('new')->name('new.')->controller(NewClientController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/{id}', 'show')->name('show');
+            Route::post('/store', 'store')->name('store');
+            Route::put('/{id}/edit', 'edit')->name('edit');
+            Route::put('/{id}/update', 'update')->name('update');
+            Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+        });
     });
     /* SERVICES*/
     Route::prefix('service')->name('service.')->controller(ServiceController::class)->group(function () {
@@ -46,8 +57,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::put('/{id}/update', 'update')->name('update');
         Route::delete('/{id}/destroy', 'destroy')->name('destroy');
     });
-    /* NEW CLIENTS*/
-    Route::prefix('client')->name('client.')->controller(NewClientController::class)->group(function () {
+
+    /* EXPENSE*/
+    Route::prefix('expense')->name('expense.')->controller(ExpenseController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/store', 'store')->name('store');
@@ -56,7 +68,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::delete('/{id}/destroy', 'destroy')->name('destroy');
     });
     /* EXPENSE*/
-    Route::prefix('expense')->name('expense.')->controller(ExpenseController::class)->group(function () {
+    Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/store', 'store')->name('store');

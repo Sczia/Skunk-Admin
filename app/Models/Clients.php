@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Clients extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function records(){
+        return $this->hasMany(Record::class,'type_id');
+    }
 }

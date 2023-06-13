@@ -5,7 +5,7 @@
                 <h5 class="modal-title text-white">Edit record</h5>
 
             </div>
-            <form action="{{ route('admin.service.edit', ['id' => $service->id]) }}" method="POST">
+            <form action="{{ route('admin.service.update', ['id' => $service->id]) }}" method="POST">
                  <div class="modal-body">
                     @csrf
                     @method('PUT')
@@ -14,7 +14,7 @@
                         <div class="col-md-12">
                             <label for="name" class="form-label fw-bold text-black">Service</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                value="{{ $service->name }}" name="name" id="name"
+                                value="{{ $service->service }}" name="name" id="name"
                                 placeholder="Service">
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>

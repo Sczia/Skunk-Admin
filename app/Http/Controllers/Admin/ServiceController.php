@@ -30,7 +30,15 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Service::create([
+                'service' => $request->service,
+            ]);
+            
+            return back()->with('successToast', 'Service Created Successfully.');
+        } catch (\Throwable $th) {
+            return back()->with('errorAlert', $th->getMessage());
+        }
     }
 
     /**
@@ -54,7 +62,16 @@ class ServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $service = Service::findOrFail($id);
+            $service->update([
+                'service' => $request->service,
+                'price' => $request->price
+            ]);
+            return back()->with('successToast', 'Service Updated Successfully.');
+        } catch (\Throwable $th) {
+            return back()->with('errorAlert', $th->getMessage());
+        }
     }
 
     /**
@@ -62,6 +79,12 @@ class ServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $service = Service::findOrFail($id);
+            $service->delete();
+            return back()->with('successToast', 'Service Deleted Successfully.');
+        } catch (\Throwable $th) {
+            return back()->with('errorAlert', $th->getMessage());
+        }
     }
 }

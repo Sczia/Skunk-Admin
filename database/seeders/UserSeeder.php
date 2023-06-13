@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Clients;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -15,16 +16,18 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-
+                'name' => 'Krysia Lee',
                 'email' => 'krysialee023@gmail.com',
                 'password' => Hash::make('password'),
                 'role_id' => 1,
             ],
             [
 
-                'email' => 'royjosephlatayan16@gmail.com',
+                'name' => Clients::find(1)->name,
+                'email' => Clients::find(1)->email,
                 'password' => Hash::make('password'),
                 'role_id' => 2,
+                'client_id' => 1,
             ]
         ];
         foreach ($data as $item) {

@@ -15,14 +15,11 @@ class ClientsSeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Krysia Lee',
-                'email' => 'krysialee023@gmail.com',
-                'password' => 'krysialee023',
+                'name' => 'Roy Joseph',
+                'email' => 'royjosephlatayan16@gmail.com',
                 'company' => 'skunkworks custom',
                 'address' => '158 silangan St. Brgy. Dayap, Calauan, Laguna',
                 'number' => '09361681322'
-
-
             ]
         ];
         foreach ($data as $client) {

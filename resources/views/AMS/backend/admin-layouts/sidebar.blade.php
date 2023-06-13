@@ -14,13 +14,13 @@
             </li><!-- End Dashboard Nav -->
 
             {{--           <li class="nav-item">
-                <a class="nav-link collapsed {{ Route::is('admin.academic.*') ? 'active' : '' }}" data-bs-target="#academics"
+                <a class="nav-link collapsed {{ Route::is('admin.academic.*') ? 'active' : '' }}" data-bs-target="#clients"
                     data-bs-toggle="collapse" href="#">
                     <i class="ri-book-open-line"></i>
-                    <span>Academics</span>
+                    <span>clients</span>
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="academics" class="nav-content collapse p-2" data-bs-parent="#sidebar-nav">
+                <ul id="clients" class="nav-content collapse p-2" data-bs-parent="#sidebar-nav">
                     <li class="{{ Route::is('admin.academic.course.index') ? 'collapse-active' : '' }}">
                         <a href="{{ route('admin.academic.course.index') }}">
                             <i class="bi bi-circle"></i>
@@ -117,24 +117,28 @@
             <!-- End Icons Nav -->
 
 
-            <li class="nav-item">
-                <a class="nav-link"  href="">
-                    <i class="ri-admin-line"></i><span>Admin</span>
-                </a>
 
-            </li>
             <li class="nav-item">
-                <a class="nav-link {{ Route::is('admin.client.index') ? 'active' : '' }} " href="{{ route('admin.client.index') }}">
-                    <i class="ri-user-add-line"></i><span>New Clients</span>
+                <a class="nav-link collapsed {{ Route::is('admin.client.*') ? 'active' : '' }}" data-bs-target="#clients"
+                    data-bs-toggle="collapse" href="#">
+                    <i class="ri-book-open-line"></i>
+                    <span>Clients</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-
-            </li>
-            {{-- ---------------------------------------------------------------------------------------------- --}}
-            <li class="nav-item">
-                <a class="nav-link {{ Route::is('admin.record.index') ? 'active' : '' }}" href="{{ route('admin.record.index') }}">
-                    <i class="ri-folder-3-fill"></i><span> Clients Records</span>
-                </a>
-
+                <ul id="clients" class="nav-content collapse p-2" data-bs-parent="#sidebar-nav">
+                    <li class="{{ Route::is('admin.client.new.index') ? 'collapse-active' : '' }}">
+                        <a href="{{ route('admin.client.new.index') }}">
+                            <i class="bi bi-circle"></i>
+                            <span>New Client</span>
+                        </a>
+                    </li>
+                    <li class="{{ Route::is('admin.client.record.index') ? 'collapse-active' : '' }}">
+                        <a href="{{ route('admin.client.record.index') }}">
+                            <i class="bi bi-circle"></i>
+                            <span>Client Records</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="nav-item">
@@ -150,8 +154,13 @@
                 </a>
 
             </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ route('admin.user.index') }}">
+                    <i class="ri-admin-line"></i><span>Users</span>
+                </a>
+
+            </li>
 
     </aside>
 @endsection
-@section('scripts')
-@endsection
+
