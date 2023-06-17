@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Expense;
+use App\Models\Record;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
@@ -10,9 +12,22 @@ class AdminDashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($type = null)
     {
-        return view('AMS.backend.admin-layouts.dashboard.index');
+        $totalExpenses = Expense::whereDate('created_at', now())->sum('price');
+        if ($type != null) {
+            switch ($type) {
+                case 'weekly':
+                    $totalExpenses = Expense::whereBetween('created_at', [now()->subDays(8), now()->addDay()])->sum('price');
+                    break;
+                case 'monthly':
+                    $totalExpenses = Expense::whereBetween('created_at', [now()->startOfMonth()->subDay(), now()->endOfMonth()->addDay()])->sum('price');
+                    break;
+            }
+        }
+
+        $latestRecords = Record::with('car', 'service', 'client', 'size')->latest()->paginate(5);
+        return view('AMS.backend.admin-layouts.dashboard.index', compact('totalExpenses', 'latestRecords','type'));
     }
 
     /**

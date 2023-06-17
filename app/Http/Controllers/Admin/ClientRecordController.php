@@ -3,18 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clients;
 use App\Models\Record;
 use Illuminate\Http\Request;
 
 class ClientRecordController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $records = Record::where('type' , '=', 'old client')->get();
-        return view('AMS.backend.admin-layouts.record.index', compact('records'));
+        $clients = Clients::where('type', '=', 'old client')->get();
+        return view('AMS.backend.admin-layouts.client.exsisting.index', compact('clients'));
     }
 
     /**
@@ -33,6 +34,10 @@ class ClientRecordController extends Controller
         try {
             Record::create([
                 'name' => $request->name,
+                'email' => $request->email,
+                'company' => $request->company,
+                'address' => $request->address,
+                'number' => $request->number,
 
             ]);
             return redirect()->back()->with('successToast', 'Subject Added Successfully!');
@@ -46,7 +51,12 @@ class ClientRecordController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $client = Clients::findOrFail($id);
+            return view('AMS.backend.admin-layouts.client.exsisting.show', compact('client'));
+        } catch (\Throwable $th) {
+            return back()->with('errorAlert', $th->getMessage());
+        }
     }
 
     /**
@@ -65,9 +75,13 @@ class ClientRecordController extends Controller
         try {
             Record::where('id', $id)->update([
                 'name' => $request->name,
+                'email' => $request->email,
+                'company' => $request->company,
+                'address' => $request->address,
+                'number' => $request->number,
 
             ]);
-            return redirect()->back()->with('successToast', 'Subject Updated Successfully!');
+            return redirect()->back()->with('successToast', 'Updated Successfully!');
         } catch (\Throwable $th) {
             return redirect()->back()->with('errorAlert', $th->getMessage());
         }
@@ -80,7 +94,7 @@ class ClientRecordController extends Controller
     {
         try {
             Record::where('id', $id)->delete();
-            return redirect()->back()->with('successToast', 'Subject Deleted Successfully!');
+            return redirect()->back()->with('successToast', 'Deleted Successfully!');
         } catch (\Throwable $th) {
             return redirect()->back()->with('errorAlert', $th->getMessage());
         }

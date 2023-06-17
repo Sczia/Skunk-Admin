@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Record;
 use App\Models\Service;
 use App\Models\ServiceSize;
 use Illuminate\Database\Seeder;
@@ -22,6 +23,8 @@ class DatabaseSeeder extends Seeder
             CarsSeeder::class,
             ServiceSeeder::class,
             ServiceSizeSeeder::class,
+            RecordSeeder::class,
+            ExpenseSeeder::class,
         ]);
     }
 }

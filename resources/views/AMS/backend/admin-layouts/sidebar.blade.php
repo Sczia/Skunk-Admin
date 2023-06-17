@@ -132,10 +132,16 @@
                             <span>New Client</span>
                         </a>
                     </li>
-                    <li class="{{ Route::is('admin.client.record.index') ? 'collapse-active' : '' }}">
-                        <a href="{{ route('admin.client.record.index') }}">
+                    <li class="{{ Route::is('admin.client.old.index') ? 'collapse-active' : '' }}">
+                        <a href="{{ route('admin.client.old.index') }}">
                             <i class="bi bi-circle"></i>
-                            <span>Client Records</span>
+                            <span>Existing Client</span>
+                        </a>
+                    </li>
+                    <li class="{{ Route::is('admin.client.new.create') ? 'collapse-active' : '' }}">
+                        <a href="{{ route('admin.client.new.create') }}">
+                            <i class="bi bi-circle"></i>
+                            <span>Add Record/Client</span>
                         </a>
                     </li>
                 </ul>
@@ -159,6 +165,11 @@
                     <i class="ri-admin-line"></i><span>Users</span>
                 </a>
 
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ route('admin.paper.index') }}">
+                    <i class="ri-file-list-line"></i><span>Records</span>
+                </a>
             </li>
 
     </aside>

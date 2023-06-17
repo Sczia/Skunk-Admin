@@ -1,7 +1,7 @@
 @extends('AMS.backend.admin-layouts.sidebar')
 
 @section('page-title')
-Expense
+    Expense
 @endsection
 
 @section('contents')
@@ -24,6 +24,7 @@ Expense
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Amount</th>
+                                    <th scope="col">Date</th>
 
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
@@ -33,10 +34,16 @@ Expense
                                     <tr>
 
                                         <td>
-
+                                            {{ $expense->name }}
                                         </td>
                                         <td>
-
+                                            <div class="d-flex flex-column justify-content-center px-2 py-1">
+                                                <h6 class="mb-0 text-sm">₱{{ number_format($expense->price, 2, '.', ',') }}
+                                                </h6>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{ date('F d, Y', strtotime($expense->created_at)) }}
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-center px-2 py-1">
@@ -50,13 +57,22 @@ Expense
                                                 </button>
 
 
-                                                @include('AMS.backend.admin-layouts.client.modal._edit')
-                                                @include('AMS.backend.admin-layouts.client.modal._delete')
+                                                @include('AMS.backend.admin-layouts.expense.modal._edit')
+                                                @include('AMS.backend.admin-layouts.expense.modal._delete')
 
                                             </div>
                                         </td>
                                     </tr>
+                                    @php
+                                        $total = 0;
+                                        $total += $expense->price;
+                                    @endphp
                                 @endforeach
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="text-danger">Total: ₱{{ number_format($total, 2, '.', ',') }}</span>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->

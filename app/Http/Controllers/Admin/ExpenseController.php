@@ -62,7 +62,18 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            Expense::where('id', $id)->update([
+                'name' => $request->input('name'),
+                'price' => $request->input('price'),
+               /*  'name' => $request->name,
+                'price' => $request->price, */
+
+            ]);
+            return redirect()->back()->with('successToast', 'Updated Successfully!');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('errorAlert', $th->getMessage());
+        }
     }
 
     /**
@@ -70,6 +81,11 @@ class ExpenseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Expense::where('id', $id)->delete();
+            return redirect()->back()->with('successToast', 'Deleted Successfully!');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('errorAlert', $th->getMessage());
+        }
     }
 }

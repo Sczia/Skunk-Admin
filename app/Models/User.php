@@ -51,8 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Car::class, 'user_id');
     }
-    public function points()
+    public function client()
     {
-        return $this->hasMany(UserPoint::class, 'user_id');
+        return $this->belongsTo(Clients::class, 'client_id');
     }
 }

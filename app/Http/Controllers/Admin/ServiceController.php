@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clients;
 use App\Models\Service;
+use App\Models\ServiceSize;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -34,7 +36,7 @@ class ServiceController extends Controller
             Service::create([
                 'service' => $request->service,
             ]);
-            
+
             return back()->with('successToast', 'Service Created Successfully.');
         } catch (\Throwable $th) {
             return back()->with('errorAlert', $th->getMessage());
@@ -46,7 +48,6 @@ class ServiceController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
@@ -81,10 +82,13 @@ class ServiceController extends Controller
     {
         try {
             $service = Service::findOrFail($id);
+            foreach ($service->sizes as $key => $size) {
+                $size->delete();
+            }
             $service->delete();
-            return back()->with('successToast', 'Service Deleted Successfully.');
+            return redirect()->back()->with('successToast', 'Deleted Successfully!');
         } catch (\Throwable $th) {
-            return back()->with('errorAlert', $th->getMessage());
+            return redirect()->back()->with('errorAlert', $th->getMessage());
         }
     }
 }

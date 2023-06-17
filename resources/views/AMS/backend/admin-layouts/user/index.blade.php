@@ -13,11 +13,11 @@
                     <div class="card-header d-flex justify-content-between border-bottom-0">
                         <h3 class="text-maroon">@yield('page-title')
                         </h3>
-                        <div class="d-flex align-items-center">
+                      {{--   <div class="d-flex align-items-center">
                             <button class="btn btn-outline-maroon me-1" data-bs-toggle="modal" data-bs-target="#add">Add
                                 Account</button>
 
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="card-body">
@@ -66,12 +66,12 @@
                                         <td>
                                             <div class="d-flex justify-content-center">
 
-                                                <button class="btn btn-link text-primary" type="button"
+                                              {{--   <button class="btn btn-link text-primary" type="button"
                                                     data-bs-toggle="modal" data-bs-target="#edit{{ $user->id }}"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="Change password">
                                                     <i class="ri-pencil-line text-primary" aria-hidden="true"></i>
-                                                </button>
+                                                </button> --}}
                                                 <button class="btn btn-link text-danger" type="button"
                                                     data-bs-toggle="modal" data-bs-target="#delete{{ $user->id }}"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Logout User"

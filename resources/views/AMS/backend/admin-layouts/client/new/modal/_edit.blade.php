@@ -5,7 +5,7 @@
                 <h5 class="modal-title text-white">Edit record</h5>
 
             </div>
-            <form action="{{ route('admin.service.edit', ['id' => $client->id]) }}" method="POST">
+            <form action="{{ route('admin.client.new.edit', ['id' => $client->id]) }}" method="POST">
                <div class="modal-body">
                     @csrf
                     @method('PUT')

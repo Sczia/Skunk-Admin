@@ -19,7 +19,8 @@ class ClientsSeeder extends Seeder
                 'email' => 'royjosephlatayan16@gmail.com',
                 'company' => 'skunkworks custom',
                 'address' => '158 silangan St. Brgy. Dayap, Calauan, Laguna',
-                'number' => '09361681322'
+                'number' => '09361681322',
+                'type' => 'old client'
             ]
         ];
         foreach ($data as $client) {

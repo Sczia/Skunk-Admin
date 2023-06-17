@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clients;
+use App\Models\User;
+use COM;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class NewClientController extends Controller
 {
@@ -14,8 +17,8 @@ class NewClientController extends Controller
      */
     public function index()
     {
-        $clients = Clients::where('type' ,'=','new client')->get();
-        return view('AMS.backend.admin-layouts.client.index', compact('clients'));
+        $clients = Clients::where('type', '=', 'new client')->get();
+        return view('AMS.backend.admin-layouts.client.new.index', compact('clients'));
     }
 
     /**
@@ -23,7 +26,7 @@ class NewClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('AMS.backend.admin-layouts.client.new.create');
     }
 
     /**
@@ -50,7 +53,6 @@ class NewClientController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
@@ -64,13 +66,21 @@ class NewClientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         try {
-            Clients::where('id', $id)->update([
-                'type' => 'old cliet',
+
+            $client = Clients::findOrFail($id);
+            $client->update(['type' => 'old client']);
+            User::create([
+                'name' => $client->name,
+                'email' => $client->email,
+                'password' => Hash::make($request->password),
+                'role_id' => 2,
+                'client_id' => $client->id,
             ]);
-            return redirect()->back()->with('successToast', 'Information Updated Successfully!');
+
+            return redirect()->back()->with('successToast', 'Client Accepted Successfully!');
         } catch (\Throwable $th) {
             return redirect()->back()->with('errorAlert', $th->getMessage());
         }
@@ -82,8 +92,11 @@ class NewClientController extends Controller
     public function destroy(string $id)
     {
         try {
-            Clients::where('id', $id)->delete();
-            return redirect()->back()->with('successToast', 'Subject Deleted Successfully!');
+
+            $client = Clients::findOrFail($id);
+            $client->delete();
+
+            return redirect()->back()->with('successToast', 'Deleted Successfully!');
         } catch (\Throwable $th) {
             return redirect()->back()->with('errorAlert', $th->getMessage());
         }

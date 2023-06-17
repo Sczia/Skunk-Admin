@@ -19,7 +19,7 @@ class AuthUser extends Controller
                 Auth::user()->save();
                 $user = Auth::user();
                 // Return a success response or generate a token as needed
-                return response()->json(['message' => 'Login successful', 'user' => $user]);
+                return response()->json(['message' => 'Login successful', 'user' => $user, 'points' => $user->client->recordCount()]);
             }
             // Return an error response for invalid credentials
             return response()->json(['message' => 'Invalid role'], 401);

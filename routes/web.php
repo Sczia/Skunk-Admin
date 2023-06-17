@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\ClientRecordController;
 use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\NewClientController;
+use App\Http\Controllers\Admin\PapersController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaperController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +29,11 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/logout',  'logout')->name('logout.delete')->middleware('auth');
 });
 Route::middleware(['auth','alert'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard/{type?}', [AdminDashboardController::class, 'index'])->name('dashboard.index');
     Route::prefix('client')->name('client.')->group(function () {
+
         /* CLIENT-RECORD*/
-        Route::prefix('record')->name('record.')->controller(ClientRecordController::class)->group(function () {
+        Route::prefix('old')->name('old.')->controller(ClientRecordController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/{id}', 'show')->name('show');
             Route::post('/store', 'store')->name('store');
@@ -41,6 +44,8 @@ Route::middleware(['auth','alert'])->prefix('admin')->name('admin.')->group(func
         /* NEW CLIENTS*/
         Route::prefix('new')->name('new.')->controller(NewClientController::class)->group(function () {
             Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+
             Route::get('/{id}', 'show')->name('show');
             Route::post('/store', 'store')->name('store');
             Route::put('/{id}/edit', 'edit')->name('edit');
@@ -67,8 +72,17 @@ Route::middleware(['auth','alert'])->prefix('admin')->name('admin.')->group(func
         Route::put('/{id}/update', 'update')->name('update');
         Route::delete('/{id}/destroy', 'destroy')->name('destroy');
     });
-    /* EXPENSE*/
+    /* USER*/
     Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/store', 'store')->name('store');
+        Route::put('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+    });
+    /*PAPER*/
+    Route::prefix('paper')->name('paper.')->controller(PapersController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/store', 'store')->name('store');

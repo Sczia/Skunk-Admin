@@ -174,22 +174,14 @@
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="{{ asset('assets/images/User.png') }}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2 text-warning">
-                       {{--  @if (Auth::user()->faculty_member_id !== null)
-                            {{ Auth::user()->facultyMember->getFullName() }}
-                        @else
-                            {{ Auth::user()->student->getFullName() }}
-                        @endif --}}
+                        {{ Auth::user()->name }}
                     </span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
                         <h6>
-                        {{--     @if (Auth::user()->faculty_member_id !== null)
-                                {{ Auth::user()->facultyMember->getFullName() }}
-                            @else
-                                {{ Auth::user()->student->getFullName() }}
-                            @endif --}}
+                            {{ Auth::user()->name }}
                         </h6>
 
                         <span>{{ Auth::user()->role->display_name }}</span>

@@ -37,6 +37,8 @@
     {{-- page css --}}
     @yield('styles')
 
+    @livewireStyles
+
 </head>
 
 <body>
@@ -94,6 +96,7 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    @livewireScripts
 
     {{-- sweetalert --}}
     @include('sweetalert::alert')

@@ -1,4 +1,4 @@
-<div class="modal fade" id="delete{{ $record->id }}" tabindex="-1">
+<div class="modal fade" id="delete{{ $client->id }}" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-danger">
@@ -9,7 +9,7 @@
                 Do you want to delete this data?
             </div>
             <div class="modal-footer">
-                <form action="{{ route('admin.client.record.destroy', ['id' => $record->id]) }}" method="POST">
+                <form action="{{ route('admin.client.new.destroy', ['id' => $client->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

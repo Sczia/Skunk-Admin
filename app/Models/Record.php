@@ -10,10 +10,7 @@ class Record extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function recordType()
-    {
-        return $this->belongsTo(RecordType::class, 'record_id');
-    }
+
     public function car()
     {
         return $this->belongsTo(Car::class, 'car_id');
@@ -25,5 +22,13 @@ class Record extends Model
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id');
+    }
+    public function size()
+    {
+        return $this->belongsTo(ServiceSize::class, 'size_id');
+    }
+    public function recordCount()
+    {
+        return Record::where('type', 'new')->count();
     }
 }

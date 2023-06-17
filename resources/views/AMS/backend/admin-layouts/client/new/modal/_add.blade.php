@@ -5,7 +5,7 @@
                 <h5 class="modal-title text-white">Add Redord</h5>
 
             </div>
-            <form action="{{ route('admin.service.store') }}" method="POST">
+            <form action="{{ route('admin.client.new.store') }}" method="POST">
            <div class="modal-body">
                     @csrf
                     @method('POST')
@@ -34,7 +34,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label for="company" class="form-label fw-bold text-black">Company</label>
+                            <label for="company" class="form-label fw-bold text-black">Company Name</label>
                             <input type="text" class="form-control @error('company') is-invalid @enderror"
                                 value="{{ old('company') }}" name="company" id="company"
                                 placeholder="Company">
@@ -65,7 +65,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label for="number" class="form-label fw-bold text-black">Number</label>
+                            <label for="number" class="form-label fw-bold text-black">Phone Number</label>
                             <input type="text" class="form-control @error('number') is-invalid @enderror"
                                 value="{{ old('number') }}" name="number" id="number" placeholder="Number">
                             @error('number')
